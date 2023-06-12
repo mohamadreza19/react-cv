@@ -1,4 +1,4 @@
-import { Counter } from "./components/Counter";
+import Counter from "./features/counter/Counter";
 
 export default function () {
   return (

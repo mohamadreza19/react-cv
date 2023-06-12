@@ -1,0 +1,47 @@
+1- store are state mamanger that  keeps the data
+!--note) best pattern is have one store in whole app
+
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+});
+2-we need have reducer for our state and we can do it in slice pattern that each
+
+reducer and action will be in one file that represents reducer
+
+--feauters/counter/counterSlice.js
+
+const initialState = {
+  count: 0,
+};
+
+export const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    increment: (state) => {
+      state.count += 1;
+    },
+    decrement: (state) => {
+      state.count -= 1;
+    },
+  },
+});
+export const { increment, decrement } = counterSlice.actions; //action will be create by own counterSlice instance
+
+export default counterSlice.reducer; that will be passed store reducer for counter
+
+3- for use we follow this
+  import { useSelector, useDispatch } from "react-redux";
+  import { increment, decrement } from "./counterSlice";
+  
+    const count = useSelector((state) => state.counter.count);
+
+     const dispatch = useDispatch();
+
+    function onClick_increment() {
+        dispatch(increment());
+    }
+    <button onClick={onClick_increment}>+</button>
