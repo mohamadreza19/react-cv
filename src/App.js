@@ -1,9 +1,11 @@
-import Counter from "./features/counter/Counter";
+import { AddPostForm } from "./features/post/AddPostForm";
+import { PostList } from "./features/post/PostList";
 
 export default function () {
   return (
     <div>
-      <Counter />
+      <AddPostForm />
+      <PostList />
     </div>
   );
 }
