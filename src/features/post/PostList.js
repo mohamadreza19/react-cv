@@ -1,11 +1,26 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import React from "react";
-import { selectAllPosts } from "./postSlice";
+import {
+  selectAllPosts,
+  getPostsStatus,
+  getPostsError,
+  fetchPosts,
+} from "./postSlice";
 import { PostAuther } from "./PostAuther";
+import { useEffect } from "react";
 
 export const PostList = () => {
+  const dispatch = useDispatch();
   const posts = useSelector(selectAllPosts);
+  const postsStatus = useSelector(getPostsStatus);
+  const postsError = useSelector(getPostsError);
+
+  useEffect(() => {
+    if (postsStatus === "idle") {
+      dispatch(fetchPosts());
+    }
+  });
 
   const renreredPosts = posts.map((post) => (
     <article key={post.id} className="border">

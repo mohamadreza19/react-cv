@@ -1,11 +1,11 @@
-import { AddPostForm } from "./features/post/AddPostForm";
-import { PostList } from "./features/post/PostList";
+import Resume from "./pages/Resume";
+
+import "./locatization/i18n";
 
 export default function () {
   return (
     <div>
-      <AddPostForm />
-      <PostList />
+      <Resume />
     </div>
   );
 }
